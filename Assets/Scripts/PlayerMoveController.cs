@@ -5,23 +5,32 @@ using UnityEngine;
 public class PlayerMoveController : MonoBehaviour
 {
     public bool GameIsOver;
+
     [SerializeField] private float moveSpeed;
+    private float yBoundAbs = 5f;
 
     private void Update()
     {
-        MovePlayer(Input.GetKey(KeyCode.UpArrow));
+        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)));
     }
 
-    private void MovePlayer(bool upButton)
+    private void MovePlayer(Vector2 direction)
     {
-        Vector2 direction;
-        direction = Vector2.down;
-        if (upButton)
-        {
-            direction = Vector2.up;
-        }
-        
-        transform.Translate(direction * moveSpeed * Time.deltaTime);   
+        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        CheckYBound();
     }
 
+    private Vector2 GetDirection(bool upButton)
+    {
+        return upButton == true ? Vector2.up : Vector2.down;
+    }
+
+    private void CheckYBound()
+    {
+        if (Mathf.Abs(transform.position.y) > yBoundAbs)
+        {
+            float ySign = Mathf.Sign(transform.position.y);
+            transform.position = new Vector2(transform.position.x, ySign * yBoundAbs);
+        }
+    }
 }
