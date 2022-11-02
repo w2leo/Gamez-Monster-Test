@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class WallSpawner : MonoBehaviour
@@ -20,24 +16,22 @@ public class WallSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (CheckSpawnEnable())
+        if (ReadyToSpawn())
         {
             SpawnItem();
         }
     }
 
-    private Vector2 GetSpawnPosition()
-    {
-        return new Vector2(xSpawnPosition, Random.Range(-GameValues.yBound, GameValues.yBound));
-    }
-
     private void SpawnItem()
     {
-        Instantiate(wallPrefab, GetSpawnPosition(), Quaternion.identity, transform);
+        Vector2 spawnPosition = GameValues.GetRandomPosition(xSpawnPosition, GameValues.yBound);
+        GameObject item = ObjectPooler.SharedInstance.GetPooledObject();
+        item.SetActive(true);
+        item.transform.position = spawnPosition;
         lastSpawnDistance = background.Distance;
     }
 
-    private bool CheckSpawnEnable()
+    private bool ReadyToSpawn()
     {
         return (background.Distance - lastSpawnDistance) > distanceToSpawn;
     }

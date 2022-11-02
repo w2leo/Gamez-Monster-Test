@@ -23,7 +23,7 @@ public class Background : MonoBehaviour, IMoveLeft
 
     private void Update()
     {
-        float deltaX = GameValues.moveLeftSpeed * Time.deltaTime;
+        float deltaX = GameValues.basicMoveLeftSpeed * Time.deltaTime;
         moveInterface.MoveLeft(transform, deltaX);
         distance += deltaX;
        

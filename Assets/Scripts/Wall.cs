@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour, IMoveLeft
 {
-    protected IMoveLeft moveInterface;
+    private IMoveLeft moveInterface;
 
-    protected virtual void Start()
+    private void Start()
     {
         moveInterface = GetComponent<IMoveLeft>();
     }
 
-    protected void Update()
+    private void Update()
     {
-        moveInterface.MoveLeft(transform, GameValues.moveLeftSpeed * Time.deltaTime);      
+        moveInterface.MoveLeft(transform, GameValues.basicMoveLeftSpeed * Time.deltaTime);      
     }
 }

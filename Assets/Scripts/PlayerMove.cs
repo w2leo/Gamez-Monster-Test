@@ -4,7 +4,7 @@ public class PlayerMove : MonoBehaviour
 {
     private void Update()
     {
-        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)), GameValues.playerSpeed);
+        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)), GameValues.basicPlayerSpeed);
     }
 
     private void MovePlayer(Vector2 direction, float moveSpeed)
