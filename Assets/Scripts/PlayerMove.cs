@@ -20,10 +20,10 @@ public class PlayerMove : MonoBehaviour
 
     private void CheckYBound()
     {
-        if (Mathf.Abs(transform.position.y) > GameValues.yPlayerBound)
+        if (Mathf.Abs(transform.position.y) > GameValues.yBound)
         {
             float ySign = Mathf.Sign(transform.position.y);
-            transform.position = new Vector2(transform.position.x, ySign * GameValues.yPlayerBound);
+            transform.position = new Vector2(transform.position.x, ySign * GameValues.yBound);
         }
     }
 }
