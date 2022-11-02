@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepeatBackground : MonoBehaviour, IMoveLeft
+[RequireComponent(typeof(BoxCollider))]
+
+public class Background : MonoBehaviour, IMoveLeft
 {
     private Vector3 startPosition;
     private float repeatWidth;

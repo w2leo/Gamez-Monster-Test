@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class GameValues 
 {
     public const float yPlayerBound = 5f;

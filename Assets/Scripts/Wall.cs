@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Wall : MonoBehaviour, IMoveLeft
 {
-    private IMoveLeft moveInterface;
+    protected IMoveLeft moveInterface;
 
-    private void Start()
+    protected virtual void Start()
     {
         moveInterface = GetComponent<IMoveLeft>();
     }
 
-    private void Update()
+    protected void Update()
     {
         moveInterface.MoveLeft(transform, GameValues.moveLeftSpeed * Time.deltaTime);      
     }
