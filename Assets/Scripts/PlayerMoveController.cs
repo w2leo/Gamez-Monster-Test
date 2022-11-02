@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class PlayerMoveController : MonoBehaviour
 {
-    public bool GameIsOver;
-
-    [SerializeField] private float moveSpeed;
-    private float yBoundAbs = 5f;
-
     private void Update()
     {
-        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)));
+        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)), GameValues.playerSpeed);
     }
 
-    private void MovePlayer(Vector2 direction)
+    private void MovePlayer(Vector2 direction, float moveSpeed)
     {
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         CheckYBound();
@@ -27,10 +22,10 @@ public class PlayerMoveController : MonoBehaviour
 
     private void CheckYBound()
     {
-        if (Mathf.Abs(transform.position.y) > yBoundAbs)
+        if (Mathf.Abs(transform.position.y) > GameValues.yPlayerBound)
         {
             float ySign = Mathf.Sign(transform.position.y);
-            transform.position = new Vector2(transform.position.x, ySign * yBoundAbs);
+            transform.position = new Vector2(transform.position.x, ySign * GameValues.yPlayerBound);
         }
     }
 }
