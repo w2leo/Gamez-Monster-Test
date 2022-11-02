@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] private float moveVerticalSpeed = 5f;
+    
+
     private void Update()
     {
-        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)), GameValues.basicPlayerSpeed);
+        MovePlayer(GetDirection(Input.GetKey(KeyCode.UpArrow)), moveVerticalSpeed);
     }
 
     private void MovePlayer(Vector2 direction, float moveSpeed)
@@ -20,10 +23,10 @@ public class PlayerMove : MonoBehaviour
 
     private void CheckYBound()
     {
-        if (Mathf.Abs(transform.position.y) > GameValues.yBound)
+        if (Mathf.Abs(transform.position.y) > RandomPosition.yBound)
         {
             float ySign = Mathf.Sign(transform.position.y);
-            transform.position = new Vector2(transform.position.x, ySign * GameValues.yBound);
+            transform.position = new Vector2(transform.position.x, ySign * RandomPosition.yBound);
         }
     }
 }

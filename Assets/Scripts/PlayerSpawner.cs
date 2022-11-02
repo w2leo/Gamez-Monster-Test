@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
@@ -14,6 +12,6 @@ public class PlayerSpawner : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        Instantiate(playerPrefab, GameValues.GetRandomPosition(xPlayerSpawn, GameValues.yBound), Quaternion.identity);
+        Player player =  Instantiate(playerPrefab, RandomPosition.GetRandomPosition(xPlayerSpawn), Quaternion.identity);
     }
 }

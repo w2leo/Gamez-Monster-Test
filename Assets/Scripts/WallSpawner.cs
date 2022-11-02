@@ -4,7 +4,7 @@ public class WallSpawner : MonoBehaviour
 {
     [SerializeField] private Wall wallPrefab;
     [SerializeField] private float xSpawnPosition;
-    [SerializeField] private Background background;
+    [SerializeField] private MainGameplay gameplay;
     [SerializeField] private int distanceToSpawn;
 
     private float lastSpawnDistance;
@@ -16,6 +16,7 @@ public class WallSpawner : MonoBehaviour
 
     private void Update()
     {
+
         if (ReadyToSpawn())
         {
             SpawnItem();
@@ -24,15 +25,17 @@ public class WallSpawner : MonoBehaviour
 
     private void SpawnItem()
     {
-        Vector2 spawnPosition = GameValues.GetRandomPosition(xSpawnPosition, GameValues.yBound);
-        GameObject item = ObjectPooler.SharedInstance.GetPooledObject();
-        item.SetActive(true);
+        Vector2 spawnPosition = RandomPosition.GetRandomPosition(xSpawnPosition);
+        Wall item = ObjectPooler.SharedInstance.GetPooledObject().GetComponent<Wall>();
+        item.gameObject.SetActive(true);
         item.transform.position = spawnPosition;
-        lastSpawnDistance = background.Distance;
+        item.MainGameplay = gameplay;
+        lastSpawnDistance = gameplay.Distance;
     }
 
     private bool ReadyToSpawn()
     {
-        return (background.Distance - lastSpawnDistance) > distanceToSpawn;
+        Debug.Log($" GP dist = {gameplay.Distance}");
+        return (gameplay.Distance - lastSpawnDistance) > distanceToSpawn;
     }
 }

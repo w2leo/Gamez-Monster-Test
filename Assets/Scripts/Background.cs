@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class Background : MonoBehaviour, IMoveLeft
 {
+    [SerializeField] private MainGameplay gameplay;
     private Vector3 startPosition;
     private float repeatWidth;
     private IMoveLeft moveInterface;
-    private float distance;
-
-    public float Distance => distance;
     
     private void Start()
     {
@@ -23,9 +21,9 @@ public class Background : MonoBehaviour, IMoveLeft
 
     private void Update()
     {
-        float deltaX = GameValues.basicMoveLeftSpeed * Time.deltaTime;
+        float deltaX = gameplay.GameSpeed * Time.deltaTime;
         moveInterface.MoveLeft(transform, deltaX);
-        distance += deltaX;
+        
        
         if (transform.position.x < startPosition.x - repeatWidth)
         {

@@ -8,6 +8,7 @@ using UnityEngine;
 public class MainGameplayUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timeTest;
+    [SerializeField] private TextMeshProUGUI textDistance;
     private MainGameplay mainGp;
 
     private void Start()
@@ -17,6 +18,7 @@ public class MainGameplayUI : MonoBehaviour
 
     private void Update()
     {
-        timeTest.text = $"Time: {mainGp.AttempTime:0.0}";
+        timeTest.text = $"Time: {mainGp.AttempTime:0.0} sec";
+        textDistance.text = $"Distance: {mainGp.Distance:0.0} m";
     }
 }
