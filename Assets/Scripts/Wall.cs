@@ -1,19 +1,20 @@
 using UnityEngine;
 
-public class Wall : MonoBehaviour, IMoveLeft
+public class Wall : MonoBehaviour
 {
-    private IMoveLeft moveInterface;
+    private int damage = 1;
+    private float xBound = -30f;
 
-    public MainGameplay MainGameplay { get; set; }
-
-    private void Start()
+    public int GetDamage()
     {
-        moveInterface = GetComponent<IMoveLeft>();
-
+        return damage;
     }
 
-    private void Update()
+    void Update()
     {
-        moveInterface.MoveLeft(transform, MainGameplay.GameSpeed * Time.deltaTime);
+        if (transform.position.x < xBound)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

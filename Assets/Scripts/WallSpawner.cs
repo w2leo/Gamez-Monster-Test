@@ -26,10 +26,9 @@ public class WallSpawner : MonoBehaviour
     private void SpawnItem()
     {
         Vector2 spawnPosition = RandomPosition.GetRandomPosition(xSpawnPosition);
-        Wall item = ObjectPooler.SharedInstance.GetPooledObject().GetComponent<Wall>();
+        MoveLeft item = ObjectPooler.SharedInstance.GetPooledObject().GetComponent<MoveLeft>();
         item.gameObject.SetActive(true);
         item.transform.position = spawnPosition;
-        item.MainGameplay = gameplay;
         lastSpawnDistance = gameplay.Distance;
     }
 

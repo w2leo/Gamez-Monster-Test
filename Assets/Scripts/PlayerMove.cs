@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float moveVerticalSpeed = 5f;
-    
 
     private void Update()
     {
