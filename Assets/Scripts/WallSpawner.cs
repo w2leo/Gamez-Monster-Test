@@ -12,6 +12,13 @@ public class WallSpawner : MonoBehaviour
     private void Start()
     {
         lastSpawnDistance = 0;
+        MainGameplay.NotifyGameState += ChangeGameStateHandler;
+    }
+
+    private void ChangeGameStateHandler(bool state)
+    {
+        ObjectPooler.SharedInstance.DisableAllObjects();
+        lastSpawnDistance = 0;
     }
 
     private void Update()

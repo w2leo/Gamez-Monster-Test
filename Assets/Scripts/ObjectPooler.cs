@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [SerializeField] private int amountToPool;
     public static ObjectPooler SharedInstance;
-
-    
+    [SerializeField] private int amountToPool;
     [SerializeField] GameObject objectToPool;
 
     private List<GameObject> pooledObjects;
-   
 
     void Awake()
     {
@@ -25,7 +22,6 @@ public class ObjectPooler : MonoBehaviour
 
     public void InitializePooler(int amount)
     {
-        ClearPool();
         for (int i = 0; i < amount; i++)
         {
             GameObject obj = Instantiate(objectToPool).gameObject;
@@ -35,18 +31,13 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    private void ClearPool()
+    public void DisableAllObjects()
     {
-        if (pooledObjects.Count > 0)
+        foreach (var item in pooledObjects)
         {
-            foreach (var item in pooledObjects)
-            {
-                Destroy(item.gameObject);
-            }
-            pooledObjects.Clear();
+            item.gameObject.SetActive(false);
         }
     }
-
 
     public GameObject GetPooledObject()
     {

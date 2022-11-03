@@ -20,7 +20,6 @@ public class PlayerSpawner : MonoBehaviour
 
     private void ChangeGameStateHandler(bool gameState)
     {
-        Debug.Log("player handler");
         player.gameObject.SetActive(gameState);
         if (gameState)
         {

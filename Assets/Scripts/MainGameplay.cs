@@ -1,16 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
-
-public enum Difficulty
-{
-    Easy = 2,
-    Medium = 3,
-    Hard = 4
-}
-
 
 public class MainGameplay : MonoBehaviour
 {
@@ -54,27 +43,14 @@ public class MainGameplay : MonoBehaviour
         {
             StartNewGame(CurrentDifficulty);
         }
-        else
-        {
-            StopGame();
-        }
         GameIsActive = state;
-        StartCoroutine(ChangeGameState(state));
+        StartCoroutine(NotifyMembers(state));
     }
 
-    IEnumerator ChangeGameState(bool state)
+    IEnumerator NotifyMembers(bool state)
     {
         yield return null;
         NotifyGameState(state);
-    }
-
-    private void StopGame()
-    {
-
-        //Event -> stop game
-        //Show MainMenu (with game stats)
-        //Difficulty buttons
-        //Start new Game
     }
 
     void Update()
