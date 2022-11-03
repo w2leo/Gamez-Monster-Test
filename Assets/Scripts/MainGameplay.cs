@@ -33,6 +33,7 @@ public class MainGameplay : MonoBehaviour
         CurrentDifficulty = difficulty;
         distance = 0;
         lastIncreased = 0;
+        attempTimer = 0;
         attempCount++;
         gameSpeed = basicMoveSpeed * DifficultyMultiplier;
     }
