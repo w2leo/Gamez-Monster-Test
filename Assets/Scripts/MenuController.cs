@@ -8,9 +8,16 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         SetMenu(MenuType.MainMenu);
+        MainGameplay.NotifyGameState += GameStateHandler;
     }
 
-    public void SetMenu(MenuType menuType)
+    private void GameStateHandler(bool state)
+    {
+        MenuType currenMenu = state ? MenuType.GameUI : MenuType.EndMenu;
+        SetMenu(currenMenu);
+    }
+
+    private void SetMenu(MenuType menuType)
     {
         foreach (var menu in menusList)
         {

@@ -15,7 +15,6 @@ public class ButtonPlayState : MonoBehaviour
     public void ChangeGameState(bool state)
     {
         gameplay.SetGameState(state);
-        menuController.SetMenu(state ? MenuType.GameUI : MenuType.EndMenu);
     }
 
     public void SetDifficulty(Difficulty difficulty)
