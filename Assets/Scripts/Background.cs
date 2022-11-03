@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField] private MainGameplay gameplay;
+    //[SerializeField] private MainGameplay gameplay;
     private Vector3 startPosition;
     private float repeatWidth;
     
@@ -19,7 +19,7 @@ public class Background : MonoBehaviour
 
     private void Update()
     {
-        float deltaX = gameplay.GameSpeed * Time.deltaTime;      
+        //float deltaX = gameplay.GameSpeed * Time.deltaTime;      
        
         if (transform.position.x < startPosition.x - repeatWidth)
         {

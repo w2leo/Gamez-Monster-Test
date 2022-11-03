@@ -13,11 +13,11 @@ public class MoveLeft : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        Move(gameplay.GameSpeed * Time.deltaTime);
     }
 
-    public void Move()
+    public void Move(float speed)
     {
-        transform.Translate(Vector3.left * gameplay.GameSpeed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed);    
     }
 }
