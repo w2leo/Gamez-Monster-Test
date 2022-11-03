@@ -4,14 +4,27 @@ public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] private Player playerPrefab;
     private const float xPlayerSpawn = -10f;
+    private Player player;
 
-    private void Start()
+    private void Awake()
     {
-        SpawnPlayer();
+        CreatePlayer();
+        MainGameplay.NotifyGameState += ChangeGameStateHandler;
     }
 
-    private void SpawnPlayer()
+    private void CreatePlayer()
     {
-        Player player =  Instantiate(playerPrefab, RandomPosition.GetRandomPosition(xPlayerSpawn), Quaternion.identity);
+        player = Instantiate(playerPrefab, RandomPosition.GetRandomPosition(xPlayerSpawn), Quaternion.identity);
+        player.gameObject.SetActive(false);
+    }
+
+    private void ChangeGameStateHandler(bool gameState)
+    {
+        Debug.Log("player handler");
+        player.gameObject.SetActive(gameState);
+        if (gameState)
+        {
+            player.transform.position = RandomPosition.GetRandomPosition(xPlayerSpawn);
+        }
     }
 }

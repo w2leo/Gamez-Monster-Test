@@ -11,6 +11,7 @@ public enum Difficulty
     Hard = 4
 }
 
+
 public class MainGameplay : MonoBehaviour
 {
     private const float basicMoveSpeed = 10;
@@ -21,41 +22,55 @@ public class MainGameplay : MonoBehaviour
     private float attempTimer;
     private float gameSpeed;
     private float distance;
-    private Difficulty currentDifficulty;
+    public Difficulty CurrentDifficulty { get; set; }
 
     public float Distance => distance;
     public bool GameIsActive { get; private set; }
     public float AttempTime => attempTimer;
     public int AttempCount => attempCount;
-    public float DifficultyMultiplier => (float)currentDifficulty / 2;
+    public float DifficultyMultiplier => (float)CurrentDifficulty / 2;
     public float GameSpeed => gameSpeed;
+
+    public delegate void GameStateHandler (bool gameState);
+    public static event GameStateHandler NotifyGameState;
+
     void Start()
     {
         attempCount = 0;
     }
 
-    public void StartNewGame(Difficulty difficulty)
+    private void StartNewGame(Difficulty difficulty)
     {
-        currentDifficulty = difficulty;
-        GameIsActive = true;
+        CurrentDifficulty = difficulty;
         distance = 0;
         lastIncreased = 0;
         attempCount++;
         gameSpeed = basicMoveSpeed * DifficultyMultiplier;
     }
 
-    public void PauseGame()
+    public void SetGameState(bool state)
     {
-        GameIsActive = false;
-        //EVENT -> pause game
-        //Show menu with current game stat
-        //Resume game
-        // No diff buttons
-        //End Game -> StopGame()
+        if (state)
+        {
+            StartNewGame(CurrentDifficulty);
+        }
+        else
+        {
+            StopGame();
+        }
+        GameIsActive = state;
+        StartCoroutine(ChangeGameState(state));
     }
 
-    public void StopGame()
+    IEnumerator ChangeGameState(bool state)
     {
+        yield return null;
+        NotifyGameState(state);
+    }
+
+    private void StopGame()
+    {
+
         //Event -> stop game
         //Show MainMenu (with game stats)
         //Difficulty buttons

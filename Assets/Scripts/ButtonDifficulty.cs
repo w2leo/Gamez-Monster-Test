@@ -12,7 +12,7 @@ public class ButtonDifficulty : MonoBehaviour
         panel = transform.parent;
     }
 
-    public void SetDifficulty(ButtonPlay bp)
+    public void SetDifficulty(ButtonPlayState bp)
     {
         bp.SetDifficulty(difficulty);
         panel.gameObject.SetActive(false);
