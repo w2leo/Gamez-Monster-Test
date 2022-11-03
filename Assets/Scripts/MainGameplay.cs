@@ -15,7 +15,6 @@ public class MainGameplay : MonoBehaviour
     private const float basicMoveSpeed = 10;
     private int attempCount;
     private float attempTimer;
-
     private float gameSpeed;
     private Difficulty currentDifficulty;
 
@@ -28,7 +27,7 @@ public class MainGameplay : MonoBehaviour
     void Start()
     {
         attempCount = 0;
-        StartNewGame(Difficulty.Hard);
+        //StartNewGame(Difficulty.Hard);
     }
 
     public void StartNewGame(Difficulty difficulty)

@@ -34,7 +34,6 @@ public class WallSpawner : MonoBehaviour
 
     private bool ReadyToSpawn()
     {
-        Debug.Log($" GP dist = {gameplay.Distance}");
         return (gameplay.Distance - lastSpawnDistance) > distanceToSpawn;
     }
 }
