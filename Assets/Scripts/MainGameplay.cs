@@ -4,7 +4,7 @@ using UnityEngine;
 public class MainGameplay : MonoBehaviour
 {
     private const float basicMoveSpeed = 10;
-    private const float secToIncrease = 5f;
+    private const float secToIncrease = 15f;
     private const float increaseSpeedValue = 1.1f;
     private float lastIncreased;
     private int attempCount;
